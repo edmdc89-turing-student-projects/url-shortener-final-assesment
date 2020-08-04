@@ -5,3 +5,17 @@ export const getUrls = async () => {
     return response.json()
   }
 }
+
+export const shortenNewUrl = async (url, title) => {
+  const apiUrl = 'http://localhost:3001/api/v1/urls'
+  const requestBody = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: { title, long_url: url }
+  }
+  const response = await fetch(apiUrl, requestBody)
+
+  if(response.ok) {
+    return response.json()
+  }
+}
