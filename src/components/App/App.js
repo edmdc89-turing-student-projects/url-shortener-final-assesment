@@ -1,22 +1,25 @@
-import React, {useSate, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import { getUrls } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
 function App() {
-  constructor(props) {
-    super(props);
-    this.state = {
-      urls: []
+  const [urls, setUrls] = useState([])
+  const [error, setError] = useState({})
+
+  useEffect(() => {
+    const findShortenedUrls = async() => {
+      try {
+        const { urls } = await getUrls()
+        setUrls(urls)
+      } catch (err) {
+        setError({...err})
+      }
     }
-  }
+    findShortenedUrls()
+  })
 
-  componentDidMount() {
-
-  }
-
-  render() {
     return (
       <main className="App">
         <header>
@@ -24,10 +27,9 @@ function App() {
           <UrlForm />
         </header>
 
-        <UrlContainer urls={this.state.urls}/>
+        <UrlContainer urls={urls}/>
       </main>
     );
   }
-}
 
 export default App;
