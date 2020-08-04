@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {useSate, useEffect} from 'react';
 import './App.css';
 import { getUrls } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
-export class App extends Component {
+function App() {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +13,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
+
   }
 
   render() {
